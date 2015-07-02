@@ -1,0 +1,14 @@
+{application, sample,
+ [
+  {description, "DB Sample"},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  epgsql
+                 ]},
+  {mod, {sample_app , []}},
+  {env, [
+        ]}
+ ]}.
