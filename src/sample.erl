@@ -12,6 +12,6 @@ main(_) ->
                                 {database, Db},
                                 {timeout, 4000}
                                ]),
-    {ok, _, SelectRes} = epgsql:squery(C, "SELECT * FROM USERS"),
-    io:format("~p~n", [SelectRes]),
+    {ok, _, Selects} = epgsql:squery(C, "SELECT * FROM USERS"),
+    lists:foreach(fun({_, UserName, _, _}) -> io:format("~p~n", [binary_to_list(UserName)]) end, Selects),
     ok = epgsql:close(C).
