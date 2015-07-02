@@ -1,0 +1,4 @@
+{host, "host"}.
+{user_id, "user id"}.
+{pwd, "password"}.
+{dbname, "database name"}.

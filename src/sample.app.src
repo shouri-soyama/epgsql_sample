@@ -9,6 +9,5 @@
                   epgsql
                  ]},
   {mod, {sample_app , []}},
-  {env, [
-        ]}
+  {env, [{conf_file, "application.conf"}]}
  ]}.

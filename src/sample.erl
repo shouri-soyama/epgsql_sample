@@ -2,9 +2,14 @@
 -export([main/1]).
 
 main(_) -> 
-    {ok, C} = epgsql:connect("host", "user", "password"
+    application:load(sample),
+    application:start(sample),
+    {ok, Path} = application:get_env(sample, conf_file),
+    {ok, Lines} = file:consult(Path),
+    [{_, Host}, {_, User}, {_, Pwd}, {_, Db}|_] = Lines,
+    {ok, C} = epgsql:connect(Host, User, Pwd
                              , [
-                                {database, "db name"},
+                                {database, Db},
                                 {timeout, 4000}
                                ]),
     {ok, _, SelectRes} = epgsql:squery(C, "SELECT * FROM USERS"),
